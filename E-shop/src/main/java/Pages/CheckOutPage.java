@@ -71,7 +71,7 @@ public class CheckOutPage extends BasePage {
     public String getCartEmptyText() {return cartEmpty.getText();}
     public String getPriceChangeText() {return priceChange.getText();}
     public void typeMyEmail() {myEmail.sendKeys("DemonAdams1978@mail.com");}
-    public void typeMyEmail2() {myEmail2.sendKeys("DemonAdams1978mail.com");}
+    public void typeMyEmail2() {myEmail2.sendKeys("DemonAdams1978mail.com");} // pataisyk i stingus visus, ir testus taip pat
     public void typeMyFirstName() {myFirstName.sendKeys("Demon");}
     public void typeMyLastName() {myLastName.sendKeys("Adams");}
     public void typeMyAddress() {myAddress.sendKeys("Vytauto g. 36, Nemunaitis");}
