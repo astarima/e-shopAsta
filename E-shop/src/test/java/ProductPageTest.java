@@ -23,7 +23,7 @@ public class ProductPageTest extends BaseTest {
         productPage.clickQuantityField();
         productPage.clickQuantityNumberField(4);
         productPage.clickSubmitBtn();
-        boolean isYourCartDisplayed = productPage.isYourCartEmpty();
+        boolean isYourCartDisplayed = productPage.isYourCartEmpty(); //pataisyti boolean
         assertTrue(isYourCartDisplayed);
     }
 
@@ -41,7 +41,7 @@ public class ProductPageTest extends BaseTest {
         productPage.clickQuantityField();
         productPage.clickQuantityNumberField(4);
         productPage.clickSubmitBtn();
-        assertEquals("Color", productPage.getSelectSizeText());
+        assertEquals("Color", productPage.getSelectSizeText());//Pataisyti Asserta lokacija skiriasi
     }
 
 }
