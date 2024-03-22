@@ -12,7 +12,7 @@ public class CheckOutPageTest extends BaseTest {
     HomePage homePage;
 
     @Test
-    void checkOutTest() throws InterruptedException {
+    void checkOutTest() throws InterruptedException {//pataisyti pavadinima userCanEnterCheckout
         driver.manage().window().maximize();
         productPage = new ProductPage(driver);
         checkOutPage = new CheckOutPage(driver);
@@ -120,7 +120,7 @@ public class CheckOutPageTest extends BaseTest {
         productPage.clickSubmitBtn();
         Thread.sleep(2000);
         checkOutPage.clickCheckOutBtn();
-        checkOutPage.typeMyEmail2();
+        checkOutPage.typeMyEmail2();//nesimato kokie stringai
         checkOutPage.typeMyFirstName();
         checkOutPage.typeMyLastName();
         checkOutPage.typeMyAddress();
@@ -148,7 +148,7 @@ public class CheckOutPageTest extends BaseTest {
         productPage.clickSubmitBtn();
         Thread.sleep(2000);
         checkOutPage.clickCheckOutBtn();
-        checkOutPage.typeMyEmail();
+        checkOutPage.typeMyEmail();//nesimato kokie stringai
         checkOutPage.typeMyFirstName();
         checkOutPage.typeMyLastName();
         checkOutPage.typeMyAddress();
@@ -180,6 +180,6 @@ public class CheckOutPageTest extends BaseTest {
         Thread.sleep(3000);
         checkOutPage.clickMyPaymentBtn();
         assertEquals("Email address is required", checkOutPage.getEmailWrongMsgText());
-        assertEquals("Address is required", checkOutPage.getAddressRequiredText());
+        assertEquals("Address is required", checkOutPage.getAddressRequiredText());//truksta biski
     }
 }
