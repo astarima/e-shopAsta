@@ -10,6 +10,7 @@ public class ProductPage extends BasePage {
     public ProductPage(WebDriver driver) {
         super(driver);
     }
+
     @FindBy(css = ".MuiInputBase-root")
     public List<WebElement> styleField;
     @FindBy(css = ".MuiMenuItem-root")
@@ -23,21 +24,48 @@ public class ProductPage extends BasePage {
     @FindBy(css = ".MuiMenuItem-root")
     public List<WebElement> quantityNumberField;
     @FindBy(css = "[type='submit']")
+
     public WebElement submitBtn;
     @FindBy(css = ".MuiDivider-root")
     public WebElement yourCart;
     @FindBy(css = ".inline")
-    public WebElement selectSize;
+    public List<WebElement> selectSize;
 
-    public void clickStyleField(int i) {styleField.get(--i).click();}
-    public void clickUnisexField() {unisexField.click();}
-    public void clickColorField() {colorField.click();}
-    public void clickSizeField() {sizeField.click();}
-    public void clickQuantityField() {quantityField.click();}
-    public void clickQuantityNumberField(int i) {quantityNumberField.get(i).click();}
-    public void clickSubmitBtn() {submitBtn.click();}
-    public boolean isYourCartEmpty() {return yourCart.isDisplayed();}
-    public String getSelectSizeText() {return selectSize.getText();}//Listas get select size
+    public void chooseStyleField(int i) {
+        styleField.get(--i).click();
+    }
+
+    public void chooseUnisexField() {
+        unisexField.click();
+    }
+
+    public void chooseColorField() {
+        colorField.click();
+    }
+
+    public void chooseSizeField() {
+        sizeField.click();
+    }
+
+    public void chooseQuantityField() {
+        quantityField.click();
+    }
+
+    public void chooseQuantityNumberField(int i) {
+        quantityNumberField.get(i).click();
+    }
+
+    public void clickSubmitBtn() {
+        submitBtn.click();
+    }
+
+    public boolean isYourCartEmpty() {
+        return yourCart.isDisplayed();
+    }
+
+    public String getSelectSizeText(int i) {
+        return selectSize.get(i).getText();
+    }
 
 }
 

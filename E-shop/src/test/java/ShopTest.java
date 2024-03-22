@@ -12,9 +12,9 @@ public class ShopTest extends BaseTest {
     void filterByCategory() {
         homePage = new HomePage(driver);
         homePage.clickCategoryFilterBtn(1);
-        assertEquals("Showing", homePage.getShowItemsText().substring(0, 7), "Not selected");
+        assertEquals("Showing 7 of 7 items", homePage.getShowItemsText(), "Not selected");
         homePage.clickCategoryFilterBtn(5);
-        assertEquals("Showing", homePage.getShowItemsText().substring(0, 7), "Not selected");
+        assertEquals("Showing 2 of 2 items", homePage.getShowItemsText(), "Not selected");
     }
 
     @Test
@@ -22,7 +22,7 @@ public class ShopTest extends BaseTest {
         homePage = new HomePage(driver);
         homePage.clickTypeFilterBtn(1);
         homePage.clickTypeFilterBtn(2);
-        assertEquals("Showing", homePage.getShowItemsText().substring(0, 7), "Not selected");
+        assertEquals("Showing 8 of 8 items", homePage.getShowItemsText(), "Not selected");
     }
 
     @Test
@@ -45,7 +45,7 @@ public class ShopTest extends BaseTest {
         homePage.clickExpandIcon(1);
         Thread.sleep(1000);
         homePage.clickExpandIcon(2);
-        assertEquals(19, homePage.getProductsListCount(19), "List not expand");
+        assertEquals(19, homePage.getProductsListCount(), "List not expand");
 
     }
 

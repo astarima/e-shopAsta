@@ -8,40 +8,42 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 public class ProductPageTest extends BaseTest {
     HomePage homePage;
     ProductPage productPage;
+
     @Test
     void selectProductOptions() throws InterruptedException {
-        driver.manage().window().maximize();
         homePage = new HomePage(driver);
         productPage = new ProductPage(driver);
         homePage.clickCategoryFilterBtn(1);
         homePage.clickProductNameLink();
-        productPage.clickStyleField(1);
+        productPage.chooseStyleField(1);
         Thread.sleep(1000);
-        productPage.clickUnisexField();
-        productPage.clickColorField();
-        productPage.clickSizeField();
-        productPage.clickQuantityField();
-        productPage.clickQuantityNumberField(4);
+        productPage.chooseUnisexField();
+        productPage.chooseColorField();
+        productPage.chooseSizeField();
+        Thread.sleep(2000);
+        productPage.chooseQuantityField();
+        Thread.sleep(2000);
+        productPage.chooseQuantityNumberField(4);
         productPage.clickSubmitBtn();
-        boolean isYourCartDisplayed = productPage.isYourCartEmpty(); //pataisyti boolean
-        assertTrue(isYourCartDisplayed);
+        assertTrue(productPage.isYourCartEmpty());
     }
 
     @Test
     void cantAddProductWithoutSelectedSize() throws InterruptedException {
-        driver.manage().window().maximize();
         homePage = new HomePage(driver);
         productPage = new ProductPage(driver);
         homePage.clickCategoryFilterBtn(1);
         homePage.clickProductNameLink();
-        productPage.clickStyleField(1);
+        productPage.chooseStyleField(1);
         Thread.sleep(1000);
-        productPage.clickUnisexField();
-        productPage.clickColorField();
-        productPage.clickQuantityField();
-        productPage.clickQuantityNumberField(4);
+        productPage.chooseUnisexField();
+        productPage.chooseColorField();
+        Thread.sleep(2000);
+        productPage.chooseQuantityField();
+        Thread.sleep(2000);
+        productPage.chooseQuantityNumberField(4);
         productPage.clickSubmitBtn();
-        assertEquals("Color", productPage.getSelectSizeText());//Pataisyti Asserta lokacija skiriasi
+        assertEquals("Select size", productPage.getSelectSizeText(3));
     }
 
 }

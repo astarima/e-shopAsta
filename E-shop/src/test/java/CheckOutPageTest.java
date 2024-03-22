@@ -12,20 +12,20 @@ public class CheckOutPageTest extends BaseTest {
     HomePage homePage;
 
     @Test
-    void checkOutTest() throws InterruptedException {//pataisyti pavadinima userCanEnterCheckout
-        driver.manage().window().maximize();
+    void UserCanSeeCartSummaryOnTheCheckoutPage() throws InterruptedException {
         productPage = new ProductPage(driver);
         checkOutPage = new CheckOutPage(driver);
         homePage = new HomePage(driver);
         homePage.clickCategoryFilterBtn(1);
         homePage.clickProductNameLink();
-        productPage.clickStyleField(1);
+        productPage.chooseStyleField(1);
         Thread.sleep(1000);
-        productPage.clickUnisexField();
-        productPage.clickColorField();
-        productPage.clickSizeField();
-        productPage.clickQuantityField();
-        productPage.clickQuantityNumberField(4);
+        productPage.chooseUnisexField();
+        productPage.chooseColorField();
+        productPage.chooseSizeField();
+        Thread.sleep(2000);
+        productPage.chooseQuantityField();
+        productPage.chooseQuantityNumberField(4);
         productPage.clickSubmitBtn();
         Thread.sleep(2000);
         checkOutPage.clickCheckOutBtn();
@@ -33,34 +33,36 @@ public class CheckOutPageTest extends BaseTest {
     }
 
     @Test
-    void changeProductQuantity() throws InterruptedException {
-        driver.manage().window().maximize();
+    void userCanChangeProductQuantity() throws InterruptedException {
+
         checkOutPage = new CheckOutPage(driver);
         homePage = new HomePage(driver);
         productPage = new ProductPage(driver);
         homePage.clickCategoryFilterBtn(1);
         homePage.clickProductNameLink();
-        productPage.clickStyleField(1);
+        productPage.chooseStyleField(1);
         Thread.sleep(1000);
-        productPage.clickUnisexField();
-        productPage.clickColorField();
-        productPage.clickSizeField();
-        productPage.clickQuantityField();
-        productPage.clickQuantityNumberField(4);
+        productPage.chooseUnisexField();
+        productPage.chooseColorField();
+        productPage.chooseSizeField();
+        Thread.sleep(2000);
+        productPage.chooseQuantityField();
+        productPage.chooseQuantityNumberField(4);
         Thread.sleep(2000);
         productPage.clickSubmitBtn();
         Thread.sleep(2000);
         checkOutPage.clickCheckOutBtn();
         Thread.sleep(2000);
-        checkOutPage.clickQuantitySelector(1);
+        checkOutPage.chooseQuantitySelector(1);
         Thread.sleep(2000);
-        checkOutPage.clickQuantityChangeField();
+        checkOutPage.chooseQuantityChangeField();
         checkOutPage.typeQuantity("5");
         Thread.sleep(5000);
         assertEquals("€86.56", checkOutPage.getPriceChangeText(), "Price not changed");
     }
+
     @Test
-    void deleteProduct() throws InterruptedException {
+    void userCanDeleteProduct() throws InterruptedException {
         driver.manage().window().maximize();
         productPage = new ProductPage(driver);
         checkOutPage = new CheckOutPage(driver);
@@ -68,7 +70,7 @@ public class CheckOutPageTest extends BaseTest {
         homePage.clickCategoryFilterBtn(1);
         homePage.clickProductNameLink();
         Thread.sleep(2000);
-        productPage.clickSizeField();
+        productPage.chooseSizeField();
         Thread.sleep(2000);
         productPage.clickSubmitBtn();
         Thread.sleep(2000);
@@ -79,107 +81,112 @@ public class CheckOutPageTest extends BaseTest {
     }
 
     @Test
-    void shippingInformation() throws InterruptedException {
+    void userAddShippingInformation() throws InterruptedException {
         driver.manage().window().maximize();
         productPage = new ProductPage(driver);
         checkOutPage = new CheckOutPage(driver);
         homePage = new HomePage(driver);
         homePage.clickCategoryFilterBtn(1);
         homePage.clickProductNameLink();
-        productPage.clickSizeField();
+        productPage.chooseSizeField();
         Thread.sleep(2000);
         productPage.clickSubmitBtn();
         Thread.sleep(2000);
         checkOutPage.clickCheckOutBtn();
-        checkOutPage.typeMyEmail();
-        checkOutPage.typeMyFirstName();
-        checkOutPage.typeMyLastName();
-        checkOutPage.typeMyAddress();
-        checkOutPage.typeMySuit();
-        checkOutPage.typeMyCity();
-        checkOutPage.typeMyRegion();
-        checkOutPage.typeMyPostCode();
+        checkOutPage.typeMyEmail("DemonAdams1978@mail.com");
+        checkOutPage.typeMyFirstName("Demon");
+        checkOutPage.typeMyLastName("Adams");
+        checkOutPage.typeMyAddress("Vytauto g. 36, Nemunaitis");
+        checkOutPage.typeMySuit("5");
+        checkOutPage.typeMyCity("Alytus");
+        checkOutPage.typeMyRegion("Alytaus");
+        checkOutPage.typeMyPostCode("64205");
         Thread.sleep(3000);
         checkOutPage.clickCountryIcon();
-        checkOutPage.clickMyCountry(20);
+        checkOutPage.selectMyCountry(20);
         checkOutPage.clickMyPaymentBtn();
         Thread.sleep(7000);
         assertEquals("Your order", checkOutPage.getMyPaymentInfoText(), "Not send payment");
     }
 
     @Test
-    void shippingInformationWrongEmail() throws InterruptedException {
+    void userAddShippingInformationWrongEmail() throws InterruptedException {
         driver.manage().window().maximize();
         productPage = new ProductPage(driver);
         checkOutPage = new CheckOutPage(driver);
         homePage = new HomePage(driver);
         homePage.clickCategoryFilterBtn(1);
         homePage.clickProductNameLink();
-        productPage.clickSizeField();
+        productPage.chooseSizeField();
         Thread.sleep(2000);
         productPage.clickSubmitBtn();
         Thread.sleep(2000);
         checkOutPage.clickCheckOutBtn();
-        checkOutPage.typeMyEmail2();//nesimato kokie stringai
-        checkOutPage.typeMyFirstName();
-        checkOutPage.typeMyLastName();
-        checkOutPage.typeMyAddress();
-        checkOutPage.typeMySuit();
-        checkOutPage.typeMyCity();
-        checkOutPage.typeMyRegion();
-        checkOutPage.typeMyPostCode();
+        checkOutPage.typeMyEmail("DemonAdams1978mail.com");
+        checkOutPage.typeMyFirstName("Demon");
+        checkOutPage.typeMyLastName("Adams");
+        checkOutPage.typeMyAddress("Vytauto g. 36, Nemunaitis");
+        checkOutPage.typeMySuit("5");
+        checkOutPage.typeMyCity("Alytus");
+        checkOutPage.typeMyRegion("Alytaus");
+        checkOutPage.typeMyPostCode("64205");
         Thread.sleep(3000);
         checkOutPage.clickCountryIcon();
-        checkOutPage.clickMyCountry(20);
+        checkOutPage.selectMyCountry(20);
         checkOutPage.clickMyPaymentBtn();
-        assertEquals("Please enter a valid email address", checkOutPage.getEmailWrongMsgText());
+        assertEquals("Please enter a valid email address", checkOutPage.getFieldsRequiredText(3));
     }
 
     @Test
-    void fillOnlyMandatoryFields() throws InterruptedException {
+    void userFillOnlyMandatoryFields() throws InterruptedException {
         driver.manage().window().maximize();
         productPage = new ProductPage(driver);
         checkOutPage = new CheckOutPage(driver);
         homePage = new HomePage(driver);
         homePage.clickCategoryFilterBtn(1);
         homePage.clickProductNameLink();
-        productPage.clickSizeField();
+        productPage.chooseSizeField();
         Thread.sleep(2000);
         productPage.clickSubmitBtn();
         Thread.sleep(2000);
         checkOutPage.clickCheckOutBtn();
-        checkOutPage.typeMyEmail();//nesimato kokie stringai
-        checkOutPage.typeMyFirstName();
-        checkOutPage.typeMyLastName();
-        checkOutPage.typeMyAddress();
-        checkOutPage.typeMyCity();
-        checkOutPage.typeMyPostCode();
+        checkOutPage.typeMyEmail("DemonAdams1978@mail.com");
+        checkOutPage.typeMyFirstName("Demon");
+        checkOutPage.typeMyLastName("Adams");
+        checkOutPage.typeMyAddress("Vytauto g. 36, Nemunaitis");
+        checkOutPage.typeMyCity("Alytus");
+        checkOutPage.typeMyPostCode("64205");
         Thread.sleep(3000);
         checkOutPage.clickCountryIcon();
-        checkOutPage.clickMyCountry(20);
+        checkOutPage.selectMyCountry(20);
         checkOutPage.clickMyPaymentBtn();
         Thread.sleep(7000);
         assertEquals("Your order", checkOutPage.getMyPaymentInfoText(), "Not send payment");
     }
 
     @Test
-    void mandatoryFieldEmpty() throws InterruptedException {
+    void mandatoryFieldsEmpty() throws InterruptedException {
         driver.manage().window().maximize();
         productPage = new ProductPage(driver);
         checkOutPage = new CheckOutPage(driver);
         homePage = new HomePage(driver);
         homePage.clickCategoryFilterBtn(1);
         homePage.clickProductNameLink();
-        productPage.clickSizeField();
+        productPage.chooseSizeField();
         Thread.sleep(2000);
         productPage.clickSubmitBtn();
         Thread.sleep(2000);
         checkOutPage.clickCheckOutBtn();
-        checkOutPage.typeMySuit();
-        checkOutPage.typeMyRegion();
+        checkOutPage.typeMySuit("5");
+        checkOutPage.typeMyRegion("Alytaus");
         Thread.sleep(3000);
         checkOutPage.clickMyPaymentBtn();
-        assertEquals("Email address is required", checkOutPage.getEmailWrongMsgText());
-        assertEquals("Address is required", checkOutPage.getAddressRequiredText());//truksta biski
+        Thread.sleep(2000);
+        assertEquals("Email address is required", checkOutPage.getFieldsRequiredText(1));
+        assertEquals("First name is required", checkOutPage.getFieldsRequiredText(2));
+        assertEquals("Last name is required", checkOutPage.getFieldsRequiredText(3));
+        assertEquals("Address is required", checkOutPage.getFieldsRequiredText(4));
+        assertEquals("City is required", checkOutPage.getFieldsRequiredText(5));
+        assertEquals("Post code is required", checkOutPage.getFieldsRequiredText(6));
     }
 }

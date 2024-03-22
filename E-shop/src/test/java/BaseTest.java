@@ -9,13 +9,14 @@ public class BaseTest {
     WebDriver driver;
 
     @BeforeEach
-    void setup() {
+    void setup() throws InterruptedException {
         driver = new ChromeDriver();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
         driver.get("https://demostore.shop/");
+        driver.manage().window().maximize();
     }
-    @AfterEach
-    void close() {
-        driver.quit();
-    }
+//    @AfterEach
+//    void close() {
+//        driver.quit();
+//    }
 }

@@ -29,8 +29,6 @@ public class CheckOutPage extends BasePage {
     public WebElement priceChange;
     @FindBy(css = "[placeholder='Your email address']")
     public WebElement myEmail;
-    @FindBy(css = "[placeholder='Your email address']")
-    public WebElement myEmail2;
     @FindBy(css = "[placeholder='Your first name']")
     public WebElement myFirstName;
     @FindBy(css = "[placeholder='Your last name']")
@@ -53,40 +51,95 @@ public class CheckOutPage extends BasePage {
     public WebElement myPaymentBtn;
     @FindBy(xpath = "//*[(@class='mb-6 subtitle')]")
     public WebElement myPaymentInfo;
-    @FindBy(id = "mui-4-helper-text")
-    public WebElement emailWrongMsg;
-    @FindBy(id = "mui-7-helper-text")
-    public WebElement addressRequired;
+    @FindBy(css = ".MuiFormHelperText-root")
+    public List<WebElement> fieldsRequired;
 
-    public void clickCheckOutBtn() {checkOutBtn.click();}
-    public String getSecureCheckOutText() {return secureCheckOut.getText();}
-    public void clickQuantitySelector(int i) {quantitySelector.get(--i).click();}
-    public void clickQuantityChangeField() {
+    public void clickCheckOutBtn() {
+        checkOutBtn.click();
+    }
+
+    public String getSecureCheckOutText() {
+        return secureCheckOut.getText();
+    }
+
+    public void chooseQuantitySelector(int i) {
+        quantitySelector.get(--i).click();
+    }
+
+    public void chooseQuantityChangeField() {
         quantityChangeField.click();
     }
+
     public void typeQuantity(String number) {
         quantityChangeField.sendKeys(Keys.chord(Keys.CONTROL, "a"), "5");
     }
-    public void clickRemoveProductBtn() {removeProductBtn.click();}
-    public String getCartEmptyText() {return cartEmpty.getText();}
-    public String getPriceChangeText() {return priceChange.getText();}
-    public void typeMyEmail() {myEmail.sendKeys("DemonAdams1978@mail.com");}
-    public void typeMyEmail2() {myEmail2.sendKeys("DemonAdams1978mail.com");} // pataisyk i stingus visus, ir testus taip pat
-    public void typeMyFirstName() {myFirstName.sendKeys("Demon");}
-    public void typeMyLastName() {myLastName.sendKeys("Adams");}
-    public void typeMyAddress() {myAddress.sendKeys("Vytauto g. 36, Nemunaitis");}
-    public void typeMySuit() {mySuit.sendKeys("5");}
-    public void typeMyCity() {myCity.sendKeys("Alytus");}
-    public void typeMyRegion() {myRegion.sendKeys("Alytaus");}
-    public void typeMyPostCode() {myPostCode.sendKeys("64205");}
-    public void clickCountryIcon() {countryIcon.click();}
-    public void clickMyCountry(int i) {myCountry.get(--i).click();}
+
+    public void clickRemoveProductBtn() {
+        removeProductBtn.click();
+    }
+
+    public String getCartEmptyText() {
+        return cartEmpty.getText();
+    }
+
+    public String getPriceChangeText() {
+        return priceChange.getText();
+    }
+
+    public void typeMyEmail(String i) {
+        myEmail.sendKeys(i);
+    }
+
+    public void typeMyFirstName(String i) {
+        myFirstName.sendKeys(i);
+    }
+
+    public void typeMyLastName(String i) {
+        myLastName.sendKeys(i);
+    }
+
+    public void typeMyAddress(String i) {
+        myAddress.sendKeys(i);
+    }
+
+    public void typeMySuit(String i) {
+        mySuit.sendKeys(i);
+    }
+
+    public void typeMyCity(String i) {
+        myCity.sendKeys(i);
+    }
+
+    public void typeMyRegion(String i) {
+        myRegion.sendKeys(i);
+    }
+
+    public void typeMyPostCode(String i) {
+        myPostCode.sendKeys(i);
+    }
+
+    public void clickCountryIcon() {
+        countryIcon.click();
+    }
+
+    public void selectMyCountry(int i) {
+        myCountry.get(--i).click();
+    }
+
     public void clickMyPaymentBtn() {
-        myPaymentBtn.click();}
-    public String getMyPaymentInfoText() {return myPaymentInfo.getText();}
-    public String getEmailWrongMsgText() {return emailWrongMsg.getText();}
-    public String getAddressRequiredText() {return addressRequired.getText();}
+        myPaymentBtn.click();
+    }
+
+    public String getMyPaymentInfoText() {
+        return myPaymentInfo.getText();
+    }
+
+
+    public String getFieldsRequiredText(int i) {
+        return fieldsRequired.get(--i).getText();
+    }
 }
+
 
 
 

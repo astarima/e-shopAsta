@@ -34,27 +34,35 @@ public class HomePage extends BasePage {
     public void clickCategoryFilterBtn(int i) {
         categoryFilterBtn.get(--i).click();
     }
+
     public String getShowItemsText() {
         return showItems.getText();
     }
+
     public void clickTypeFilterBtn(int i) {
         typeFilterBtn.get(--i).click();
     }
+
     public void clickLoadMoreBtn(int i) {
         loadMoreBtn.get(--i).click();
     }
+
     public void clickExpandIcon(int i) {
         expandIcon.get(--i).click();
     }
+
     public boolean isFiltersListDisplayed() {
         return filtersList.isEmpty();
     }
-    public int getProductsListCount(int i) {
+
+    public int getProductsListCount() {
         return productsList.size();
     }
+
     public void clickProductNameLink() {
         productNameLink.click();
     }
+
     public String getBuyNowFieldText() {
         return buyNowField.getText();
     }
