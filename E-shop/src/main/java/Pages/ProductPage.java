@@ -37,7 +37,7 @@ public class ProductPage extends BasePage {
     public void clickQuantityNumberField(int i) {quantityNumberField.get(i).click();}
     public void clickSubmitBtn() {submitBtn.click();}
     public boolean isYourCartEmpty() {return yourCart.isDisplayed();}
-    public String getSelectSizeText() {return selectSize.getText();}
+    public String getSelectSizeText() {return selectSize.getText();}//Listas get select size
 
 }
 
